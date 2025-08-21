@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
-import { Button, Card, Input, Select } from './ui';
-import { toast } from './ui/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Select } from '@/components/ui/select';
+import { useToast } from '@/hooks/use-toast';
 
 interface Bid {
   id: string;
@@ -15,8 +19,8 @@ interface Bid {
 export const BidManagement: React.FC = () => {
   const [bids, setBids] = useState<Bid[]>([]);
   const [loading, setLoading] = useState(true);
-  const supabase = useSupabaseClient();
-  const user = useUser();
+  const { user } = useAuth();
+  const { toast } = useToast();
 
   useEffect(() => {
     fetchBids();

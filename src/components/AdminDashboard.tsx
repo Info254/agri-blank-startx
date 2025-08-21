@@ -10,7 +10,7 @@ interface FlaggedMarket {
   market_id: string;
   user_id: string;
   reason: string;
-  created_at: string;
+  created_at: string | null;
 }
 
 interface BanRecommendation {
@@ -18,7 +18,7 @@ interface BanRecommendation {
   market_id: string;
   user_id: string;
   reason: string;
-  created_at: string;
+  created_at: string | null;
 }
 
 interface AdminDashboardProps {
@@ -72,7 +72,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAdmin }) => {
                     <td>{flag.market_id}</td>
                     <td>{flag.user_id}</td>
                     <td>{flag.reason}</td>
-                    <td>{new Date(flag.created_at).toLocaleString()}</td>
+                    <td>{flag.created_at ? new Date(flag.created_at).toLocaleString() : 'Unknown'}</td>
                     <td>
                       <Button size="sm" variant="outline">Resolve</Button>
                     </td>
@@ -107,7 +107,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAdmin }) => {
                     <td>{ban.market_id}</td>
                     <td>{ban.user_id}</td>
                     <td>{ban.reason}</td>
-                    <td>{new Date(ban.created_at).toLocaleString()}</td>
+                    <td>{ban.created_at ? new Date(ban.created_at).toLocaleString() : 'Unknown'}</td>
                     <td>
                       <Button size="sm" variant="destructive">Ban</Button>
                     </td>
