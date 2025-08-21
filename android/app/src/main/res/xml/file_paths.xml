@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Cache directory for temporary files -->
+    <cache-path name="cache" path="." />
+    
+    <!-- External files directory -->
+    <external-path name="external_files" path="." />
+    
+    <!-- External cache directory -->
+    <external-cache-path name="external_cache" path="." />
+    
+    <!-- External media directory -->
+    <external-files-path name="external_media" path="." />
+    
+    <!-- Files in the app's files directory -->
+    <files-path name="files" path="." />
+    
+    <!-- For sharing files from the app's cache directory -->
+    <cache-path name="shared_cache" path="/" />
+    
+    <!-- For sharing images -->
+    <external-files-path name="images" path="Pictures" />
+    
+    <!-- For sharing files from download folder -->
+    <external-files-path name="downloads" path="Download" />
+</paths>

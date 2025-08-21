@@ -1,0 +1,27 @@
+# Local configuration files
+local.properties
+app/secure.properties
+
+# Built application files
+*.apk
+*.aar
+*.aab
+*.ap_
+
+# Gradle files
+.gradle/
+build/
+
+# Android Studio
+*.iml
+.idea/
+captures/
+
+# Generated files
+bin/
+gen/
+out/
+
+# Keys and credentials
+*.jks
+*.keystore

@@ -1,0 +1,10 @@
+{
+  "appId": "com.agriconnect.app",
+  "appName": "agri-connect",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}

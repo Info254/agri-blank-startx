@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Exclude shared preferences that contain sensitive information -->
+    <exclude domain="sharedpref" path="sensitive_prefs.xml"/>
+    
+    <!-- Include app-specific files that should be backed up -->
+    <include domain="file" path="app_data.db"/>
+    <include domain="database" path="app_database"/>
+    
+    <!-- Exclude cache and temporary files -->
+    <exclude domain="file" path="cache"/>
+    <exclude domain="database" path="webview"/>
+    <exclude domain="sharedpref" path="com.google.android.gms.appid.xml"/>
+    
+    <!-- Include specific shared preferences -->
+    <include domain="sharedpref" path="app_preferences.xml"/>
+    
+    <!-- Exclude sensitive directories -->
+    <exclude domain="file" path="sensitive/"/>
+    
+    <!-- Include app settings -->
+    <include domain="sharedpref" path="settings.xml"/>
+</full-backup-content>

@@ -1,0 +1,1 @@
+-- Market selection view already created in equipment_market migration 

@@ -1,0 +1,1 @@
+-- Export policies already created in notifications migration

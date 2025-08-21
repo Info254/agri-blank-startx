@@ -1,0 +1,155 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
+}
+
+android {
+    namespace "com.agriconnect.app"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.agriconnect.app"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        compose true
+        buildConfig true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion rootProject.ext.compose_version
+    }
+
+    kotlinOptions {
+        jvmTarget = '21'
+        freeCompilerArgs += ["-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"]
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+}
+
+dependencies {
+    def composeBom = platform('androidx.compose:compose-bom:2023.08.00')
+    implementation composeBom
+
+    // Core Android
+    implementation "androidx.core:core-ktx:1.12.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2"
+    implementation "androidx.activity:activity-compose:1.8.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2"
+
+    // Compose
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.material3:material3"
+    implementation "androidx.compose.ui:ui-tooling-preview"
+    implementation "androidx.navigation:navigation-compose:2.7.5"
+    debugImplementation "androidx.compose.ui:ui-tooling"
+
+    // Supabase
+    implementation 'io.github.jan-tennert.supabase:postgrest-kt:1.3.2'
+    implementation 'io.github.jan-tennert.supabase:realtime-kt:1.3.2'
+    implementation 'io.github.jan-tennert.supabase:storage-kt:1.3.2'
+    implementation 'io.ktor:ktor-client-android:2.3.6'
+
+    // Camera
+    implementation "androidx.camera:camera-camera2:1.3.0"
+    implementation "androidx.camera:camera-lifecycle:1.3.0"
+    implementation "androidx.camera:camera-view:1.3.0"
+
+    // Dependency Injection
+    implementation "com.google.dagger:hilt-android:2.48"
+    kapt "com.google.dagger:hilt-android-compiler:2.48"
+    implementation "androidx.hilt:hilt-navigation-compose:1.1.0"
+
+    // Image Loading
+    implementation "io.coil-kt:coil-compose:2.5.0"
+
+    // Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+
+    // TensorFlow Lite for ML
+    implementation 'org.tensorflow:tensorflow-lite:2.13.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.13.0'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.4.4'
+
+    // Google ML Kit for OCR
+    implementation 'com.google.mlkit:text-recognition:16.0.0'
+    implementation 'com.google.mlkit:text-recognition-chinese:16.0.0'
+    implementation 'com.google.mlkit:text-recognition-devanagari:16.0.0'
+    implementation 'com.google.mlkit:text-recognition-japanese:16.0.0'
+    implementation 'com.google.mlkit:text-recognition-korean:16.0.0'
+
+    // Firebase for push notifications
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Room database for offline capability
+    implementation "androidx.room:room-runtime:2.6.1"
+    implementation "androidx.room:room-ktx:2.6.1"
+    kapt "androidx.room:room-compiler:2.6.1"
+
+    // OkHttp for network requests
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+
+    // ExifInterface for image metadata
+    implementation "androidx.exifinterface:exifinterface:1.3.6"
+
+    // Location services for weather
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation platform(composeBom)
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+}
+
+apply from: 'capacitor.build.gradle'
+apply plugin: 'dagger.hilt.android.plugin'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}
+
+// Add this function at the end of the file
+def getSecureProperty(String propertyName) {
+    def secureProperties = new Properties()
+    def securePropertiesFile = new File(project.projectDir, 'secure.properties')
+    if (securePropertiesFile.exists()) {
+        secureProperties.load(new FileInputStream(securePropertiesFile))
+        def value = secureProperties[propertyName]
+        if (value == null) {
+            throw new GradleException("Missing ${propertyName} in secure.properties")
+        }
+        return value
+    } else {
+        throw new GradleException("secure.properties not found")
+    }
+}

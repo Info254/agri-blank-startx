@@ -1,0 +1,74 @@
+version: '3.8'
+services:
+  db:
+    image: timescale/timescaledb-ha:pg15-latest
+    command: postgres -c shared_preload_libraries=timescaledb
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./supabase/migrations:/supabase/migrations
+
+  supabase-api:
+    image: supabase/gotrue:v2.125.0
+    depends_on:
+      - db
+    ports:
+      - "9999:9999"
+    environment:
+      GOTRUE_JWT_SECRET: your-super-secret-jwt-token-with-at-least-32-characters
+      GOTRUE_JWT_EXP: 3600
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_DB_DATABASE_URL: postgres://postgres:postgres@db:5432/postgres?sslmode=disable
+      GOTRUE_SITE_URL: http://localhost:3000
+      GOTRUE_OPERATOR_TOKEN: your-super-secret-operator-token
+      GOTRUE_SMTP_HOST: mail
+      GOTRUE_SMTP_PORT: 2500
+      GOTRUE_SMTP_USER: fake_mail_user
+      GOTRUE_SMTP_PASS: fake_mail_password
+      GOTRUE_SMTP_SENDER_NAME: fake sender
+      GOTRUE_MAILER_URLPATHS_INVITE: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_CONFIRMATION: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_RECOVERY: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: /auth/v1/verify
+
+  supabase-rest:
+    image: postgrest/postgrest:v11.2.0
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      PGRST_DB_URI: postgres://postgres:postgres@db:5432/postgres
+      PGRST_DB_SCHEMAS: public,storage
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: your-super-secret-jwt-token-with-at-least-32-characters
+      PGRST_DB_USE_LEGACY_GUCS: "false"
+
+  supabase-realtime:
+    image: supabase/realtime:v2.25.12
+    depends_on:
+      - db
+    ports:
+      - "4000:4000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      PORT: 4000
+      JWT_SECRET: your-super-secret-jwt-token-with-at-least-32-characters
+      SECURE_CHANNELS: "true"
+      SLOT_NAME: supabase_realtime_rls
+      TEMPORARY_SLOT: "true"
+      DB_SSL: "false"
+
+volumes:
+  db-data:
+    driver: local
