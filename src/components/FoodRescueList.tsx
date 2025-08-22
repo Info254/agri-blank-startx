@@ -1,10 +1,18 @@
 import { notify } from '../services/notificationService';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getFoodRescueListings } from '../services/FoodRescueService';
 
+interface FoodRescueListing {
+  id: string;
+  product: string;
+  quantity: number;
+  unit: string;
+  status: string;
+}
+
 export default function FoodRescueList() {
-  const [listings, setListings] = useState([]);
-  const [prevListings, setPrevListings] = useState([]);
+  const [listings, setListings] = useState<FoodRescueListing[]>([]);
+  const [prevListings, setPrevListings] = useState<FoodRescueListing[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

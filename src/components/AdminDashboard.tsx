@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getFlaggedCityMarkets, getBanRecommendations } from '../services/cityMarketService';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { toast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 
 interface FlaggedMarket {
   id: string;
@@ -28,11 +27,10 @@ interface AdminDashboardProps {
 const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAdmin }) => {
   const [flaggedMarkets, setFlaggedMarkets] = useState<FlaggedMarket[]>([]);
   const [banRecommendations, setBanRecommendations] = useState<BanRecommendation[]>([]);
-  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!isAdmin) return;
-    setLoading(true);
     getFlaggedCityMarkets().then(({ data, error }) => {
       if (error) toast({ title: 'Error loading flagged markets', description: error.message });
       setFlaggedMarkets(data || []);
@@ -40,7 +38,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAdmin }) => {
     getBanRecommendations().then(({ data, error }) => {
       if (error) toast({ title: 'Error loading ban recommendations', description: error.message });
       setBanRecommendations(data || []);
-      setLoading(false);
     });
   }, [isAdmin]);
 

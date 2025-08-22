@@ -1,11 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getBulkOrders } from '../services/BulkOrderService';
 import { notify } from '../services/notificationService';
 
-export default function BulkOrderList({ onSelect }) {
-  const [orders, setOrders] = useState([]);
+interface BulkOrder {
+  id: string;
+  buyer_id: string | null;
+  created_at: string | null;
+  delivery_date: string | null;
+  produce_type: string;
+  quality: string | null;
+  quantity: number;
+  status: string | null;
+}
+
+interface BulkOrderListProps {
+  onSelect?: (order: BulkOrder) => void;
+}
+
+export default function BulkOrderList({ onSelect }: BulkOrderListProps) {
+  const [orders, setOrders] = useState<BulkOrder[]>([]);
   const [loading, setLoading] = useState(true);
-  const [prevOrders, setPrevOrders] = useState([]);
+  const [prevOrders, setPrevOrders] = useState<BulkOrder[]>([]);
 
   useEffect(() => {
     let intervalId;

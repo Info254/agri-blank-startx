@@ -7,7 +7,7 @@ import {
   CardTitle, 
   CardDescription 
 } from '@/components/ui/card';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -144,7 +144,7 @@ const AllCountiesPriceView: React.FC = () => {
           <>
             <div className="flex flex-col md:flex-row gap-4 mb-6">
               <div className="w-full md:w-auto">
-                <Tabs value={view} onValueChange={(v: 'county' | 'commodity') => setView(v)}>
+                <Tabs value={view} onValueChange={(v) => setView(v as 'county' | 'commodity')}>
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="county">By County</TabsTrigger>
                     <TabsTrigger value="commodity">By Commodity</TabsTrigger>
