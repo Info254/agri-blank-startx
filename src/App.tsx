@@ -83,7 +83,7 @@ import DataStatus from './pages/DataStatus';
 import DataJobs from './pages/DataJobs';
 import SystemStatus from './pages/SystemStatus';
 import FAQPage from './pages/FAQPage';
-import { AuthProvider } from './hooks/useAuth';
+import { AuthProvider } from './hooks/useAuth.tsx';
 import { Toaster } from 'sonner';
 import FarmInputMarketplace from './pages/FarmInputMarketplace';
 import EquipmentMarketplace from './pages/EquipmentMarketplace';
