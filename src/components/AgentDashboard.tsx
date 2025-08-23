@@ -95,7 +95,9 @@ const AgentDashboard: React.FC<AgentDashboardProps> = ({ isAdmin, isAgent, userI
             <CardTitle>Verify Agents</CardTitle>
           </CardHeader>
           <CardContent>
-            {agents.length === 0 ? (
+            {loading ? (
+              <div>Loading agents...</div>
+            ) : agents.length === 0 ? (
               <div>No agents found.</div>
             ) : (
               <table className="w-full text-sm">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createFoodRescueListing } from '../services/FoodRescueService';
 import { notify } from '../services/notificationService';
 
@@ -11,16 +11,20 @@ const initialState = {
   status: 'available',
 };
 
-export default function FoodRescueForm({ onCreated }) {
+interface FoodRescueFormProps {
+  onCreated?: (data: any) => void;
+}
+
+export default function FoodRescueForm({ onCreated }: FoodRescueFormProps) {
   const [form, setForm] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = e => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');

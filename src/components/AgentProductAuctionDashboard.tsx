@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getCityMarketProducts, addCityMarketProduct, getCityMarketAuctions, createCityMarketAuction } from '@/services/cityMarketService';
 import ValidatedForm from '@/components/ValidatedForm';
-import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { toast } from '@/components/ui/use-toast';
 
@@ -79,7 +78,9 @@ const AgentProductAuctionDashboard: React.FC<AgentProductAuctionDashboardProps> 
           <CardTitle>Your Products</CardTitle>
         </CardHeader>
         <CardContent>
-          {products.length === 0 ? (
+          {loading ? (
+            <div>Loading products...</div>
+          ) : products.length === 0 ? (
             <div>No products found.</div>
           ) : (
             <ul>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createImperfectSurplusProduce } from '../services/ImperfectSurplusService';
 import { notify } from '../services/notificationService';
 
@@ -9,16 +9,20 @@ const initialState = {
   status: 'available',
 };
 
-export default function ImperfectSurplusForm({ onCreated }) {
+interface ImperfectSurplusFormProps {
+  onCreated?: (data: any) => void;
+}
+
+export default function ImperfectSurplusForm({ onCreated }: ImperfectSurplusFormProps) {
   const [form, setForm] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = e => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');

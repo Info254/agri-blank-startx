@@ -1,16 +1,15 @@
 import { notify } from '../services/notificationService';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getInputPricing } from '../services/inputPricingService';
 
-import { createInputPricing } from '../services/inputPricingService';
 interface InputPricing {
   id: string;
-  product_id: string;
-  supplier_id: string;
-  price: number;
-  date: string;
-  verified: boolean;
-  crowdsource_source: string;
+  product_id: string | null;
+  supplier_id: string | null;
+  price: number | null;
+  date: string | null;
+  verified: boolean | null;
+  crowdsource_source: string | null;
 }
 
 export default function InputPricingList() {

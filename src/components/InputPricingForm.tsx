@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createInputPricing } from '../services/inputPricingService';
 import { notify } from '../services/notificationService';
 
@@ -8,16 +8,20 @@ const initialState = {
   price: '',
 };
 
-export default function InputPricingForm({ onCreated }) {
+interface InputPricingFormProps {
+  onCreated?: (data: any) => void;
+}
+
+export default function InputPricingForm({ onCreated }: InputPricingFormProps) {
   const [form, setForm] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = e => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');

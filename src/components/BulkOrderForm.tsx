@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createBulkOrder } from '../services/BulkOrderService';
 
 const initialState = {
@@ -7,16 +7,20 @@ const initialState = {
   unit: '',
 };
 
-export default function BulkOrderForm({ onCreated }) {
+interface BulkOrderFormProps {
+  onCreated?: (data: any) => void;
+}
+
+export default function BulkOrderForm({ onCreated }: BulkOrderFormProps) {
   const [form, setForm] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = e => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');

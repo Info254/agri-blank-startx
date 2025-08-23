@@ -1,8 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { listComments, deleteComment } from '../services/forumCommentService';
 
-export default function ForumCommentList({ postId, userId }) {
-  const [comments, setComments] = useState([]);
+interface Comment {
+  id: string;
+  content: string;
+  createdAt: string;
+  userId: string;
+}
+
+interface ForumCommentListProps {
+  postId: string;
+  userId: string;
+}
+
+export default function ForumCommentList({ postId, userId }: ForumCommentListProps) {
+  const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -24,7 +36,7 @@ export default function ForumCommentList({ postId, userId }) {
     // eslint-disable-next-line
   }, [postId]);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: string) => {
     await deleteComment(id);
     fetchComments();
   };

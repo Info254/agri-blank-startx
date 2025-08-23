@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createComment } from '../services/forumCommentService';
 
-export default function ForumCommentForm({ postId, userId, onCommented }) {
+interface ForumCommentFormProps {
+  postId: string;
+  userId: string;
+  onCommented?: () => void;
+}
+
+export default function ForumCommentForm({ postId, userId, onCommented }: ForumCommentFormProps) {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');

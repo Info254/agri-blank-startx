@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { notify } from '../services/notificationService';
 
 const initialState = {
@@ -10,16 +10,20 @@ const initialState = {
   feedback_rating: '',
 };
 
-export default function DonationForm({ onDonated }) {
+interface DonationFormProps {
+  onDonated?: (data: any) => void;
+}
+
+export default function DonationForm({ onDonated }: DonationFormProps) {
   const [form, setForm] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = e => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
