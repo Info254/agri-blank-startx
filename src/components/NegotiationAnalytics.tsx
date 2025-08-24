@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getProcessingMatches } from '../services/BulkOrderService';
 
-export default function NegotiationAnalytics({ orderId }) {
-  const [logs, setLogs] = useState([]);
+export default function NegotiationAnalytics({ orderId }: { orderId: string }) {
+  const [logs, setLogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 

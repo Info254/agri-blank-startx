@@ -1,29 +1,15 @@
 import React from 'react';
-import { InventoryManager, useInventoryBatches } from '@/services/InventoryManager';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Select } from '@/components/ui/select';
-import { toast } from '@/components/ui/use-toast';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
-import { 
-  Package, 
-  TrendingUp, 
-  AlertTriangle, 
-  ArrowUpDown,
-  Calendar,
-  Search,
-  Filter,
-  PlusCircle,
-  Trash2
-} from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import { Package, TrendingUp, AlertTriangle, PlusCircle } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import {
   Table,
@@ -33,6 +19,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 
 export function InventoryDashboard() {
   const [items, setItems] = React.useState<any[]>([]);
@@ -49,9 +37,7 @@ export function InventoryDashboard() {
     minimum_stock: 0,
   });
 
-  const supabase = useSupabaseClient();
-  const user = useUser();
-  const inventoryManager = new InventoryManager(supabase);
+  const { user } = useAuth();
 
   React.useEffect(() => {
     fetchInventory();
@@ -189,17 +175,17 @@ export function InventoryDashboard() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-64"
-                icon={<Search className="h-4 w-4" />}
               />
-              <Select
+              <select
                 value={selectedCategory}
-                onValueChange={setSelectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="border rounded px-2 py-2"
               >
                 <option value="all">All Categories</option>
                 {categories.map(category => (
                   <option key={category} value={category}>{category}</option>
                 ))}
-              </Select>
+              </select>
             </div>
           </div>
         </CardHeader>
@@ -286,15 +272,16 @@ export function InventoryDashboard() {
                   setNewItem({ ...newItem, quantity: Number(e.target.value) })
                 }
               />
-              <Select
+              <select
                 value={newItem.unit}
-                onValueChange={(value) => setNewItem({ ...newItem, unit: value })}
+                onChange={(e) => setNewItem({ ...newItem, unit: e.target.value })}
+                className="border rounded px-2 py-2"
               >
                 <option value="kg">Kilograms (kg)</option>
                 <option value="g">Grams (g)</option>
                 <option value="l">Liters (l)</option>
                 <option value="units">Units</option>
-              </Select>
+              </select>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <Input

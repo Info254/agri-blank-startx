@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
-import { Button, Card, Input, Select } from './ui';
-import { toast } from './ui/use-toast';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { toast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 
 interface InventoryItem {
   id: string;
@@ -27,8 +30,7 @@ export const InventoryManagement: React.FC = () => {
     minimum_stock: 0,
   });
 
-  const supabase = useSupabaseClient();
-  const user = useUser();
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchInventory();
@@ -124,14 +126,14 @@ export const InventoryManagement: React.FC = () => {
           <Input
             placeholder="Item Name"
             value={newItem.item_name}
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setNewItem({ ...newItem, item_name: e.target.value })
             }
           />
           <Input
             placeholder="Category"
             value={newItem.category}
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setNewItem({ ...newItem, category: e.target.value })
             }
           />
@@ -139,24 +141,26 @@ export const InventoryManagement: React.FC = () => {
             type="number"
             placeholder="Quantity"
             value={newItem.quantity}
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setNewItem({ ...newItem, quantity: Number(e.target.value) })
             }
           />
-          <Select
+          <select
             value={newItem.unit}
-            onValueChange={(value) => setNewItem({ ...newItem, unit: value })}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setNewItem({ ...newItem, unit: e.target.value })
+            }
           >
             <option value="kg">Kilograms (kg)</option>
             <option value="g">Grams (g)</option>
             <option value="l">Liters (l)</option>
             <option value="units">Units</option>
-          </Select>
+          </select>
           <Input
             type="number"
             placeholder="Unit Price"
             value={newItem.unit_price}
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setNewItem({ ...newItem, unit_price: Number(e.target.value) })
             }
           />
@@ -164,7 +168,7 @@ export const InventoryManagement: React.FC = () => {
             type="number"
             placeholder="Minimum Stock"
             value={newItem.minimum_stock}
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setNewItem({ ...newItem, minimum_stock: Number(e.target.value) })
             }
           />

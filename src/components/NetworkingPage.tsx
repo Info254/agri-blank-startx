@@ -1,20 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {
-  createEvent,
-  getEvent,
-  updateEvent,
   listEvents,
-  createPartnership,
-  updatePartnership,
   listPartnerships,
-  createMatch,
-  updateMatch,
   listMatches,
-  createMentorship,
-  updateMentorship,
   listMentorships,
-  createRequest,
-  updateRequest,
   listRequests
 } from '../services/networkingService';
 

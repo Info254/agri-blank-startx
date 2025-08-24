@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { Card } from './ui';
+import { Card } from '@/components/ui/card';
+import { supabase } from '@/integrations/supabase/client';
 import {
   LineChart,
   Line,
@@ -28,7 +28,7 @@ export const MarketAnalytics: React.FC = () => {
   const [marketStats, setMarketStats] = useState<MarketStats[]>([]);
   const [priceHistory, setPriceHistory] = useState<ProductPriceHistory[]>([]);
   const [loading, setLoading] = useState(true);
-  const supabase = useSupabaseClient();
+  
 
   useEffect(() => {
     fetchMarketData();

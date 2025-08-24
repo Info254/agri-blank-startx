@@ -45,7 +45,7 @@ export const BidManagement: React.FC = () => {
     }
   };
 
-  const handleBidAction = async (bidId: string, action: 'accept' | 'reject') => {
+  const handleBidAction = async (_bidId: string, action: 'accept' | 'reject') => {
     try {
       // Note: This would need a proper status column in the database
       // For now, we'll just show a message

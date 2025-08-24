@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { getImperfectSurplusProduce } from '../services/ImperfectSurplusService';
 
 export default function ImperfectSurplusList() {
-  const [produce, setProduce] = useState([]);
-  const [prevProduce, setPrevProduce] = useState([]);
+  const [produce, setProduce] = useState<any[]>([]);
+  const [prevProduce, setPrevProduce] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

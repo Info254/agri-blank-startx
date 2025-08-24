@@ -3,7 +3,6 @@ import ForumCommentForm from './ForumCommentForm';
 import ForumCommentList from './ForumCommentList';
 import {
   createPost,
-  getPost,
   updatePost,
   deletePost,
   listPosts

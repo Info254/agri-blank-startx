@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getCityMarketProductsByCategory, setCityMarketProductCategory, updateCityMarketProductStatus } from '@/services/cityMarketService';
+import { getCityMarketProductsByCategory } from '@/services/cityMarketService';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 

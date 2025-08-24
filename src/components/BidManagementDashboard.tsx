@@ -8,12 +8,11 @@ import { toast } from '@/hooks/use-toast';
 import { BidValidator } from '@/services/BidValidator';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
-import { 
-  CheckCircle, 
-  XCircle, 
-  Clock, 
-  TrendingUp, 
-  AlertTriangle 
+import {
+  CheckCircle,
+  XCircle,
+  Clock,
+  AlertTriangle
 } from 'lucide-react';
 
 export function BidManagementDashboard() {

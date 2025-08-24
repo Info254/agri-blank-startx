@@ -20,16 +20,15 @@ import {
   Legend, 
   ResponsiveContainer 
 } from 'recharts';
-import { fetchAmisKePrices, fetchAmisKeMarkets, getAmisKePriceHistory } from '@/services/amis-ke';
-import { AmisKePriceData, AmisKeMarket } from '@/services/amis-ke/types';
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { fetchAmisKePrices, getAmisKePriceHistory } from '@/services/amis-ke';
+import type { AmisKePriceData } from '@/services/amis-ke/types';
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 import { supabase } from "@/integrations/supabase/client";
 
 const AmisKeDataView: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [prices, setPrices] = useState<AmisKePriceData[]>([]);
-  const [markets, setMarkets] = useState<AmisKeMarket[]>([]);
   const [selectedCommodity, setSelectedCommodity] = useState<string>('');
   const [priceHistory, setPriceHistory] = useState<any[]>([]);
   const [historyLoading, setHistoryLoading] = useState(false);
@@ -44,13 +43,9 @@ const AmisKeDataView: React.FC = () => {
     setLoading(true);
     setApiError(null);
     try {
-      const [pricesData, marketsData] = await Promise.all([
-        fetchAmisKePrices(),
-        fetchAmisKeMarkets()
-      ]);
+      const pricesData = await fetchAmisKePrices();
       
       setPrices(pricesData);
-      setMarkets(marketsData);
       
       // Generate headline for current prices
       if (pricesData.length > 0) {
@@ -61,9 +56,9 @@ const AmisKeDataView: React.FC = () => {
       
       // Set default commodity selection
       if (pricesData.length > 0) {
-        const uniqueCommodities = [...new Set(pricesData.map(p => p.commodity))];
+        const uniqueCommodities: string[] = Array.from(new Set(pricesData.map((p: AmisKePriceData) => p.commodity)));
         if (uniqueCommodities.length > 0) {
-          setSelectedCommodity(uniqueCommodities[0]);
+          setSelectedCommodity(uniqueCommodities[0] as string);
         }
       } else {
         // If no data from API, show fallback error that explains the issue
@@ -102,7 +97,7 @@ const AmisKeDataView: React.FC = () => {
   }, [selectedCommodity]);
 
   // Get unique commodities
-  const commodities = [...new Set(prices.map(p => p.commodity))];
+  const commodities: string[] = Array.from(new Set(prices.map((p: AmisKePriceData) => p.commodity)));
 
   // Load backup data from Supabase
   const loadSupabaseData = async () => {

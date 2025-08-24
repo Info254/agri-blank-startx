@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   createBatch,
-  getBatch,
-  updateBatch,
   listBatches,
   addEventToBatch,
   getBatchJourney
