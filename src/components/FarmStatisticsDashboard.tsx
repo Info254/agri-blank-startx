@@ -41,8 +41,7 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, trend, loading }) => 
 
 const FarmStatisticsDashboard: React.FC = () => {
   const { 
-    isLoading,
-    farmStats
+    isLoading
   } = useFarmStatistics();
 
   // Mock data for demonstration

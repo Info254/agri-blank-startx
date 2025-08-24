@@ -18,7 +18,7 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 
-
+const MainNavigation: React.FC = () => {
   return (
     <NavigationMenu className="hidden md:flex">
       <NavigationMenuList>

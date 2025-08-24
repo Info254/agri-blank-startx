@@ -24,7 +24,6 @@ import { useAuth } from '@/hooks/useAuth';
 
 export function InventoryDashboard() {
   const [items, setItems] = React.useState<any[]>([]);
-  const [loading, setLoading] = React.useState(true);
   const [searchTerm, setSearchTerm] = React.useState('');
   const [selectedCategory, setSelectedCategory] = React.useState('all');
   const [showAddDialog, setShowAddDialog] = React.useState(false);
@@ -45,51 +44,53 @@ export function InventoryDashboard() {
 
   const fetchInventory = async () => {
     try {
-      const { data, error } = await supabase
-        .from('inventory_items')
-        .select('*')
-        .eq('user_id', user?.id);
+      if (user?.id) {
+        const { data, error } = await supabase
+          .from('inventory_items')
+          .select('*')
+          .eq('user_id', user.id);
 
-      if (error) throw error;
-      setItems(data || []);
+        if (error) throw error;
+        setItems(data || []);
+      }
     } catch (error) {
       toast({
         title: 'Error fetching inventory',
         description: 'Please try again later',
         variant: 'destructive',
       });
-    } finally {
-      setLoading(false);
     }
   };
 
   const handleAddItem = async () => {
     try {
-      const { error } = await supabase.from('inventory_items').insert([
-        {
-          ...newItem,
-          user_id: user?.id,
-        },
-      ]);
+      if (user?.id) {
+        const { error } = await supabase.from('inventory_items').insert([
+          {
+            ...newItem,
+            user_id: user.id,
+          },
+        ]);
 
-      if (error) throw error;
+        if (error) throw error;
 
-      toast({
-        title: 'Item added successfully',
-        variant: 'default',
-      });
+        toast({
+          title: 'Item added successfully',
+          variant: 'default',
+        });
 
-      setShowAddDialog(false);
-      setNewItem({
-        item_name: '',
-        category: '',
-        quantity: 0,
-        unit: 'kg',
-        unit_price: 0,
-        minimum_stock: 0,
-      });
+        setShowAddDialog(false);
+        setNewItem({
+          item_name: '',
+          category: '',
+          quantity: 0,
+          unit: 'kg',
+          unit_price: 0,
+          minimum_stock: 0,
+        });
 
-      fetchInventory();
+        fetchInventory();
+      }
     } catch (error) {
       toast({
         title: 'Error adding item',
