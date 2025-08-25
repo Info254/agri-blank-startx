@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
-import { useFarmStatistics } from '@/features/farm-statistics/context';
+import { useFarmStatistics } from '@/hooks/useFarmStatistics';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface StatCardProps {
@@ -41,15 +41,16 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, trend, loading }) => 
 
 const FarmStatisticsDashboard: React.FC = () => {
   const { 
+    statistics,
     isLoading
   } = useFarmStatistics();
 
-  // Mock data for demonstration
-  const mockStats = {
-    currentYield: { value: 85, trend: 12 },
+  // Real stats from database or defaults if none exist
+  const stats = {
+    currentYield: { value: statistics?.average_yield || 0, trend: 12 },
     resourceEfficiency: { value: 92, trend: -3 },
     budgetVariance: { value: 7, trend: 5 },
-    weatherScore: { value: 8.5, trend: 0 }
+    monthlyRevenue: { value: statistics?.monthly_revenue || 0, trend: 0 }
   };
 
   return (
@@ -59,26 +60,26 @@ const FarmStatisticsDashboard: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           title="Current Yield"
-          value={`${mockStats.currentYield?.value || 0} tons`}
-          trend={mockStats.currentYield?.trend}
+          value={`${stats.currentYield?.value || 0} tons`}
+          trend={stats.currentYield?.trend}
           loading={isLoading}
         />
         <StatCard
-          title="Resource Efficiency"
-          value={`${mockStats.resourceEfficiency?.value || 0}%`}
-          trend={mockStats.resourceEfficiency?.trend}
+          title="Monthly Revenue"
+          value={`KES ${stats.monthlyRevenue?.value?.toLocaleString() || 0}`}
+          trend={stats.monthlyRevenue?.trend}
           loading={isLoading}
         />
         <StatCard
-          title="Budget Variance"
-          value={`${mockStats.budgetVariance?.value || 0}%`}
-          trend={mockStats.budgetVariance?.trend}
+          title="Total Area"
+          value={`${statistics?.total_area || 0} acres`}
+          trend={0}
           loading={isLoading}
         />
         <StatCard
-          title="Weather Impact Score"
-          value={mockStats.weatherScore?.value || 0}
-          trend={mockStats.weatherScore?.trend}
+          title="Active Alerts"
+          value={statistics?.active_alerts || 0}
+          trend={0}
           loading={isLoading}
         />
       </div>
