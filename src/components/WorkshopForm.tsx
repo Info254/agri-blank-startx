@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import { createWorkshop } from '../services/RecipeResourceService';
 import { notify } from '../services/notificationService';

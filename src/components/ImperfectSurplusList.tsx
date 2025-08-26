@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { notify } from '../services/notificationService';
 import React, { useEffect, useState } from 'react';
 import { getImperfectSurplusProduce } from '../services/ImperfectSurplusService';

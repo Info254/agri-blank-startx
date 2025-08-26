@@ -106,7 +106,7 @@ const AmisKeDataView: React.FC = () => {
       const { data: marketPricesData, error } = await supabase
         .from('market_prices')
         .select('*')
-        .order('date_recorded', { ascending: false });
+        .order('date', { ascending: false });
       
       if (error) {
         console.error("Error fetching backup data from Supabase:", error);
@@ -225,19 +225,19 @@ const AmisKeDataView: React.FC = () => {
                         (showSupabasePrices ? supabasePrices : prices).map((price) => (
                           <tr key={price.id} className="border-b hover:bg-muted/50">
                             <td className="p-2">
-                              <Badge variant="outline">{showSupabasePrices ? price.commodity_name : price.commodity}</Badge>
+                              <Badge variant="outline">{showSupabasePrices ? price.commodity : price.commodity}</Badge>
                             </td>
-                            <td className="p-2">{showSupabasePrices ? price.market_name : price.market}</td>
+                            <td className="p-2">{showSupabasePrices ? price.market : price.market}</td>
                             <td className="p-2">{price.county}</td>
                             <td className="p-2 text-right font-medium">
                               {typeof price.price === 'number' ? price.price.toFixed(2) : price.price}
                             </td>
                             <td className="p-2">{price.unit}</td>
                             <td className="p-2 text-muted-foreground">
-                              {showSupabasePrices 
-                                ? new Date(price.date_recorded).toLocaleDateString() 
-                                : price.date}
-                            </td>
+                               {showSupabasePrices 
+                                 ? new Date(price.date).toLocaleDateString() 
+                                 : price.date}
+                             </td>
                           </tr>
                         ))
                       ) : (

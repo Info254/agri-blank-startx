@@ -62,6 +62,94 @@ export type Database = {
         }
         Relationships: []
       }
+      city_market_auctions: {
+        Row: {
+          created_at: string
+          current_price: number | null
+          end_time: string
+          id: string
+          product_id: string
+          seller_user_id: string
+          starting_price: number
+          status: string | null
+          updated_at: string
+          winner_bid_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          current_price?: number | null
+          end_time: string
+          id?: string
+          product_id: string
+          seller_user_id: string
+          starting_price: number
+          status?: string | null
+          updated_at?: string
+          winner_bid_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          current_price?: number | null
+          end_time?: string
+          id?: string
+          product_id?: string
+          seller_user_id?: string
+          starting_price?: number
+          status?: string | null
+          updated_at?: string
+          winner_bid_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_auctions_product"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "city_market_products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      city_market_bids: {
+        Row: {
+          auction_id: string
+          bid_amount: number
+          bid_time: string
+          bidder_user_id: string
+          created_at: string
+          id: string
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          auction_id: string
+          bid_amount: number
+          bid_time?: string
+          bidder_user_id: string
+          created_at?: string
+          id?: string
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          auction_id?: string
+          bid_amount?: number
+          bid_time?: string
+          bidder_user_id?: string
+          created_at?: string
+          id?: string
+          status?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_bids_auction"
+            columns: ["auction_id"]
+            isOneToOne: false
+            referencedRelation: "city_market_auctions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       city_market_products: {
         Row: {
           category: string
@@ -420,6 +508,42 @@ export type Database = {
           updated_at?: string
           user_id?: string
           vehicle_types?: string[]
+        }
+        Relationships: []
+      }
+      market_prices: {
+        Row: {
+          commodity: string
+          county: string
+          created_at: string
+          date: string
+          id: string
+          market: string
+          price: number
+          unit: string
+          updated_at: string
+        }
+        Insert: {
+          commodity: string
+          county: string
+          created_at?: string
+          date: string
+          id?: string
+          market: string
+          price: number
+          unit: string
+          updated_at?: string
+        }
+        Update: {
+          commodity?: string
+          county?: string
+          created_at?: string
+          date?: string
+          id?: string
+          market?: string
+          price?: number
+          unit?: string
+          updated_at?: string
         }
         Relationships: []
       }

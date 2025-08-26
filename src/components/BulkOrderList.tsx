@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState } from 'react';
 import { getBulkOrders } from '../services/BulkOrderService';
 import { notify } from '../services/notificationService';

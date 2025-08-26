@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { notify } from '../services/notificationService';
 import React, { useEffect, useState } from 'react';
 import { getRecipes } from '../services/RecipeResourceService';

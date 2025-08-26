@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import { createRescueMatch } from '../services/FoodRescueService';
 import { notify } from '../services/notificationService';

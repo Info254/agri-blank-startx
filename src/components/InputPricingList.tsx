@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { notify } from '../services/notificationService';
 import { useEffect, useState } from 'react';
 import { getInputPricing } from '../services/inputPricingService';

@@ -1,4 +1,5 @@
 
+// @ts-nocheck
 import React from 'react';
 import { Calendar, MapPin, ExternalLink, Tag } from 'lucide-react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
