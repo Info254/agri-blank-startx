@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      animals: {
+        Row: {
+          birth_date: string | null
+          breed: string | null
+          created_at: string
+          health_status: string | null
+          id: string
+          name: string
+          species: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          birth_date?: string | null
+          breed?: string | null
+          created_at?: string
+          health_status?: string | null
+          id?: string
+          name: string
+          species: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          birth_date?: string | null
+          breed?: string | null
+          created_at?: string
+          health_status?: string | null
+          id?: string
+          name?: string
+          species?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       bulk_orders: {
         Row: {
           buyer_id: string
@@ -328,6 +364,98 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      farm_input_products: {
+        Row: {
+          availability_status: string | null
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          name: string
+          price: number
+          supplier_id: string | null
+          unit: string
+          updated_at: string
+        }
+        Insert: {
+          availability_status?: string | null
+          category: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+          price: number
+          supplier_id?: string | null
+          unit: string
+          updated_at?: string
+        }
+        Update: {
+          availability_status?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          price?: number
+          supplier_id?: string | null
+          unit?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "farm_input_products_supplier_id_fkey"
+            columns: ["supplier_id"]
+            isOneToOne: false
+            referencedRelation: "farm_input_suppliers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      farm_input_suppliers: {
+        Row: {
+          contact_person: string | null
+          created_at: string
+          email: string | null
+          id: string
+          is_verified: boolean | null
+          location: string | null
+          name: string
+          phone: string | null
+          products_offered: string[] | null
+          rating: number | null
+          updated_at: string
+        }
+        Insert: {
+          contact_person?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          is_verified?: boolean | null
+          location?: string | null
+          name: string
+          phone?: string | null
+          products_offered?: string[] | null
+          rating?: number | null
+          updated_at?: string
+        }
+        Update: {
+          contact_person?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          is_verified?: boolean | null
+          location?: string | null
+          name?: string
+          phone?: string | null
+          products_offered?: string[] | null
+          rating?: number | null
+          updated_at?: string
+        }
+        Relationships: []
       }
       farm_statistics: {
         Row: {

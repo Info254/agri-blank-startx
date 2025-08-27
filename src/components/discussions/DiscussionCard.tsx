@@ -50,7 +50,7 @@ export const DiscussionCard = ({ discussion, filterTag, setFilterTag }: Discussi
           </span>
           <span className="flex items-center">
             <Clock className="mr-1 h-4 w-4" />
-            {new Date(discussion.createdAt).toLocaleDateString()}
+            {discussion.createdAt ? new Date(discussion.createdAt).toLocaleDateString() : 'Unknown date'}
           </span>
         </div>
         <Button variant="ghost" size="sm">
