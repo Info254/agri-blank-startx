@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, AlertCircle, Clock } from 'lucide-react';

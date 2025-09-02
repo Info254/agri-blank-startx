@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { AdvertisementService, type BusinessAdvertisement } from '@/services/business/advertisementService';
-import { DollarSign, Upload, CreditCard } from 'lucide-react';
+import { DollarSign, CreditCard } from 'lucide-react';
 
 const BUSINESS_CATEGORIES = [
   'Agriculture Equipment',

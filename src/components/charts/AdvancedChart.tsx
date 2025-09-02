@@ -6,7 +6,6 @@ import {
   YAxis, CartesianGrid, Tooltip, Legend 
 } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAdvancedFarmStatistics } from '@/features/farm-statistics/advanced-context';
 import { useFarmStatistics } from '@/features/farm-statistics/context';
 import { format } from 'date-fns';
 

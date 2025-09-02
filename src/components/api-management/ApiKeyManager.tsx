@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
-import { Copy, Trash2, Plus, Eye, EyeOff } from 'lucide-react';
+import { Copy, Trash2, Plus } from 'lucide-react';
 import { ApiKeyService, type ApiKey } from '@/services/apiKeyService';
 import { useToast } from '@/hooks/use-toast';
 

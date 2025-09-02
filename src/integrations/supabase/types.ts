@@ -365,6 +365,45 @@ export type Database = {
           },
         ]
       }
+      farm_budgets: {
+        Row: {
+          actual_amount: number | null
+          category: string
+          created_at: string
+          id: string
+          notes: string | null
+          planned_amount: number
+          subcategory: string | null
+          updated_at: string
+          user_id: string
+          year: number
+        }
+        Insert: {
+          actual_amount?: number | null
+          category: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          planned_amount: number
+          subcategory?: string | null
+          updated_at?: string
+          user_id: string
+          year: number
+        }
+        Update: {
+          actual_amount?: number | null
+          category?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          planned_amount?: number
+          subcategory?: string | null
+          updated_at?: string
+          user_id?: string
+          year?: number
+        }
+        Relationships: []
+      }
       farm_input_products: {
         Row: {
           availability_status: string | null
@@ -485,6 +524,45 @@ export type Database = {
           id?: string
           monthly_revenue?: number | null
           total_area?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      farm_tasks: {
+        Row: {
+          created_at: string
+          crop: string | null
+          date: string | null
+          description: string | null
+          id: string
+          priority: string
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          crop?: string | null
+          date?: string | null
+          description?: string | null
+          id?: string
+          priority?: string
+          status?: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          crop?: string | null
+          date?: string | null
+          description?: string | null
+          id?: string
+          priority?: string
+          status?: string
+          title?: string
           updated_at?: string
           user_id?: string
         }
@@ -639,6 +717,36 @@ export type Database = {
         }
         Relationships: []
       }
+      market_forecasts: {
+        Row: {
+          commodity_name: string
+          confidence_level: string | null
+          county: string
+          created_at: string
+          forecast_price: number | null
+          id: string
+          period: string | null
+        }
+        Insert: {
+          commodity_name: string
+          confidence_level?: string | null
+          county: string
+          created_at?: string
+          forecast_price?: number | null
+          id?: string
+          period?: string | null
+        }
+        Update: {
+          commodity_name?: string
+          confidence_level?: string | null
+          county?: string
+          created_at?: string
+          forecast_price?: number | null
+          id?: string
+          period?: string | null
+        }
+        Relationships: []
+      }
       market_prices: {
         Row: {
           commodity: string
@@ -704,6 +812,33 @@ export type Database = {
           message?: string
           title?: string
           type?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      payment_transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          description: string | null
+          id: string
+          payment_provider: string | null
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          payment_provider?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          payment_provider?: string | null
           user_id?: string
         }
         Relationships: []

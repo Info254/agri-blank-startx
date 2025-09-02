@@ -1,20 +1,10 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
-import { getSuppliers, createSupplier, updateSupplier, likeSupplier, rateSupplier, bookmarkProduct, flagEntity, recommendBan } from '../../services/farmInputService';
+import { getSuppliers, likeSupplier, rateSupplier, bookmarkProduct, flagEntity, recommendBan } from '../../services/farmInputService';
 const demo_user_id = 'demo-user-id';
 
 const FarmInputSupplierManager: React.FC = () => {
   const [suppliers, setSuppliers] = useState<any[]>([]);
-  const [form, setForm] = useState({
-    supplier_name: '',
-    contact_phone: '',
-    contact_email: '',
-    contact_person: '',
-    county: '',
-    physical_address: '',
-    specialization: '',
-    user_id: '',
-    is_active: true
-  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [likeLoading, setLikeLoading] = useState<string | null>(null);

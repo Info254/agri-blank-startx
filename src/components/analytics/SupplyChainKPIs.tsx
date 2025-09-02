@@ -7,10 +7,8 @@ import {
   TrendingUp, 
   TrendingDown, 
   Clock, 
-  Truck, 
   Package, 
   DollarSign,
-  Users,
   Target,
   AlertTriangle,
   CheckCircle
@@ -174,14 +172,6 @@ const SupplyChainKPIs: React.FC<SupplyChainKPIsProps> = ({
     }, 1000);
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'good': return 'text-green-600';
-      case 'warning': return 'text-yellow-600';
-      case 'critical': return 'text-red-600';
-      default: return 'text-gray-600';
-    }
-  };
 
   const getStatusIcon = (status: string) => {
     switch (status) {

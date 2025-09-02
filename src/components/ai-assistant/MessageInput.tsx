@@ -68,7 +68,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
       };
 
       mediaRecorder.onstop = async () => {
-        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+        new Blob(audioChunksRef.current, { type: 'audio/webm' });
         
         try {
           // In a production app, we would send this to an API for transcription
