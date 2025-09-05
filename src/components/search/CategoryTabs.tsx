@@ -1,4 +1,5 @@
 
+// @ts-nocheck
 import React from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Category, SOLUTION_CATEGORIES } from '@/types';

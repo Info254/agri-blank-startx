@@ -4,7 +4,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from '@/components/ui/form';
 import { OnboardingFormData } from '@/lib/validations/partner';
 
-export default function PartnerBasicInfoForm({ form }: { form: any }) {
+export default function PartnerBasicInfoForm() {
   const { control } = useFormContext<OnboardingFormData>();
   const currentYear = new Date().getFullYear();
 

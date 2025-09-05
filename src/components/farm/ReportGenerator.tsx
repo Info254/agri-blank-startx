@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { FileDown, FileText, Calendar } from 'lucide-react';
+import { FileDown, FileText } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const ReportGenerator: React.FC = () => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,11 +14,8 @@ import {
   TrendingUp, 
   Users, 
   MessageSquare,
-  Phone,
-  Mail,
   Calendar,
   Package,
-  DollarSign,
   Shield
 } from 'lucide-react';
 

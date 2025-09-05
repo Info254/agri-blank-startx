@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { PRIVACY_CONFIG, CONTENT_RATING } from '@/config/privacy';
+import { PRIVACY_CONFIG } from '@/config/privacy';
 
 const PrivacyPolicy: React.FC = () => {
   return (
