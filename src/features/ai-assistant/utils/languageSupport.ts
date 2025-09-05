@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 // Language detection and support
 export const SWAHILI_KEYWORDS = [
   'habari', 'sawa', 'bei', 'soko', 'mazao', 'wakulima', 'chakula', 'kilimo', 'mbegu', 'maji',

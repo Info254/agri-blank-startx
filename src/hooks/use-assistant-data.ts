@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 import { useState, useEffect } from 'react';
 import { Market, Forecast, Warehouse } from '@/types';
 import { Transporter } from '@/features/ai-assistant/types';

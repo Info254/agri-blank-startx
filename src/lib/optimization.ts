@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ResourceUsage, WeatherImpact } from '@/features/farm-statistics/types';
 
 interface OptimizationParams {

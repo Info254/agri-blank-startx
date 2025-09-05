@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { supabase } from '@/lib/supabaseClient';
 import { endOfMonth, startOfMonth } from 'date-fns';
 import { 

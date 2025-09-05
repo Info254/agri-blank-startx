@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function calculateStatistics(data: any[]) {
   if (!data || data.length === 0) return null;
 

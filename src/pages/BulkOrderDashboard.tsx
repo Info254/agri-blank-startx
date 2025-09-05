@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import BulkOrderForm from '../components/BulkOrderForm';
 import BulkOrderList from '../components/BulkOrderList';

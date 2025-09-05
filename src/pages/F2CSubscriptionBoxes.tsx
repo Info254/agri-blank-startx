@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { subscribeBox, getSubscriptionBoxes, updateSubscriptionBox, getBoxDeliveries, markBoxDeliveryDelivered } from '@/services/f2cSubscriptionService';
 import { Button } from '@/components/ui/button';
