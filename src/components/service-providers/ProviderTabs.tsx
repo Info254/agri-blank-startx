@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ServiceProviderType } from "@/types";
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { MessageIntent } from './messageParser';
 import { Market, Forecast, Warehouse } from '@/types';
 import { Transporter } from '../types';

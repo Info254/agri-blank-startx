@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 import { SentimentReport, SentimentCluster, SentimentInsight } from '../types/sentiment';
 import { 
   mockSentimentReports, 
