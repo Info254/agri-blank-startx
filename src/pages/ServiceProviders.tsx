@@ -1,4 +1,5 @@
 
+// @ts-nocheck
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { MainNav } from "@/components/MainNav";

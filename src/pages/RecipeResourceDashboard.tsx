@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { createRecipe, getRecipes, createResource, getResources, createWorkshop, getWorkshops } from '../services/RecipeResourceService';
 

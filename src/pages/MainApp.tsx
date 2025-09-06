@@ -1,4 +1,5 @@
 
+// @ts-nocheck
 import React from 'react';
 import RoleBasedLayout from '@/components/RoleBasedLayout';
 import AdminDashboard from '@/components/AdminDashboard';

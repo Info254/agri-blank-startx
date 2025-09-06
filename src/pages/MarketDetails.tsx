@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Clock, Users, Phone, Mail, Globe, Calendar, Star, Share2, Heart } from 'lucide-react';

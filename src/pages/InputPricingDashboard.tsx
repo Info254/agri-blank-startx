@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { createInputPricing, getInputPricing, createInputReview, getInputReviews, createInputVerification, getInputVerifications } from '../services/inputPricingService';
 

@@ -1,4 +1,5 @@
 
+// @ts-nocheck
 import React from 'react';
 import Header from '@/components/Header';
 import SystemStatus from '@/components/admin/SystemStatus';

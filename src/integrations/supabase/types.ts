@@ -240,6 +240,57 @@ export type Database = {
         }
         Relationships: []
       }
+      client_needs_assessments: {
+        Row: {
+          budget: number | null
+          county: string | null
+          created_at: string
+          crop_interest: string[] | null
+          email: string | null
+          goals: string | null
+          id: string
+          name: string
+          phone: string | null
+          preferred_contact: string | null
+          referral_source: string | null
+          role: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          budget?: number | null
+          county?: string | null
+          created_at?: string
+          crop_interest?: string[] | null
+          email?: string | null
+          goals?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          preferred_contact?: string | null
+          referral_source?: string | null
+          role?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          budget?: number | null
+          county?: string | null
+          created_at?: string
+          crop_interest?: string[] | null
+          email?: string | null
+          goals?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          preferred_contact?: string | null
+          referral_source?: string | null
+          role?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       community_posts: {
         Row: {
           category: string | null

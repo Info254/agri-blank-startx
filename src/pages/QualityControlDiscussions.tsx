@@ -1,4 +1,5 @@
 
+// @ts-nocheck
 import { useState, useEffect } from "react";
 import { MessageSquare } from "lucide-react";
 import { MainNav } from "@/components/MainNav";

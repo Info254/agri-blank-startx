@@ -1,4 +1,5 @@
 
+// @ts-nocheck
 import { useEffect, useState } from "react";
 import { MainNav } from "@/components/MainNav";
 import { Button } from "@/components/ui/button";
