@@ -5,6 +5,8 @@ import { Toaster } from 'sonner';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Index';
 import Auth from './pages/Auth';
+import NairobiNakuruMarketplaces from './pages/NairobiNakuruMarketplaces';
+import BluetoothCoordination from './pages/BluetoothCoordination';
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/marketplaces" element={<NairobiNakuruMarketplaces />} />
+          <Route path="/bluetooth-coordination" element={<BluetoothCoordination />} />
         </Routes>
         <Toaster />
       </div>
