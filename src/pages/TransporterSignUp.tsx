@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -48,11 +48,9 @@ const TransporterSignUp: React.FC = () => {
     
     checkUser();
     
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setUser(session?.user || null);
-      }
-    );
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null);
+    });
     
     return () => {
       authListener.subscription.unsubscribe();
@@ -143,23 +141,22 @@ const TransporterSignUp: React.FC = () => {
     }
     
     try {
-      // Prepare data for insertion
+      // Prepare data for insertion (mapped to logistics_providers schema)
+      const capMatch = loadCapacity.match(/[\d.]+/);
       const transporterData = {
         user_id: user.id,
-        name: businessName,
-        service_type: "transport",
-        counties: selectedCounties,
+        company_name: businessName,
+        service_type: ['transport'],
+        coverage_areas: selectedCounties,
         contact_info: `${phone} | ${email}`,
-        capacity: vehicleCount,
-        load_capacity: parseInt(loadCapacity.split('-')[0]) || 1000,
-        rates: rates,
-        has_refrigeration: specialFeatures.includes('refrigeration'),
-        vehicle_type: vehicleType
+        capacity_tons: capMatch ? parseFloat(capMatch[0]) : 1,
+        vehicle_types: vehicleType ? [vehicleType] : [],
+        rates: rates ? { notes: rates } : null,
       };
       
       // Insert into Supabase
-      const { data, error } = await supabase
-        .from('transporters')
+      const { error } = await supabase
+        .from('logistics_providers')
         .insert(transporterData)
         .select();
       
