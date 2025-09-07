@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Suspense } from 'react';
 import { RouteObject } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';

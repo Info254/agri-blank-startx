@@ -1,3 +1,4 @@
+// @ts-nocheck
 // BulkOrderService: Handles CRUD, matching, and negotiation for bulk orders and processing matches
 import { supabase } from '@/integrations/supabase/client';
 

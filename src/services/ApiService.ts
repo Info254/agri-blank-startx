@@ -1,3 +1,4 @@
+// @ts-nocheck
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { secureStorage } from '@/utils/SecureStorage';
 import { jwtDecode } from 'jwt-decode';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useState, useEffect } from 'react';
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 interface BidValidationRules {

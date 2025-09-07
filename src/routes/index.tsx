@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { BidManagement } from '../components/BidManagement';

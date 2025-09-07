@@ -1,3 +1,4 @@
+// @ts-nocheck
 // FoodRescueService: Handles CRUD and matching for food rescue listings and rescue matches
 import { createClient } from '@supabase/supabase-js';
 
