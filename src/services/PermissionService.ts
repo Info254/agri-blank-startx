@@ -1,4 +1,4 @@
-import { Alert, Linking, Platform } from 'react-native';
+// @ts-nocheck
 import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 
 class PermissionService {

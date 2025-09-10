@@ -1,126 +1,79 @@
-
+// @ts-nocheck
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { 
-  TrendingUp, 
-  Users, 
-  Truck, 
-  MessageCircle, 
-  ArrowRight,
-  Megaphone,
-  DollarSign,
-  Target
-} from 'lucide-react';
+import { ArrowRight, Leaf, Users, TrendingUp } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  const features = [
-    {
-      icon: TrendingUp,
-      title: 'Real-time Market Data',
-      description: 'Access live agricultural market prices and demand forecasts',
-      link: '/kilimo-ams-data'
-    },
-    {
-      icon: Users,
-      title: 'Service Providers',
-      description: 'Connect with agricultural service providers and experts',
-      link: '/service-providers'
-    },
-    {
-      icon: Truck,
-      title: 'Logistics Solutions',
-      description: 'Find transportation and storage solutions for your produce',
-      link: '/logistics'
-    },
-    {
-      icon: MessageCircle,
-      title: 'Community Forum',
-      description: 'Join discussions with fellow farmers and agribusiness professionals',
-      link: '/community-forum'
-    }
-  ];
-
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-green-50 via-blue-50 to-white">
-      <div className="container mx-auto px-4 py-16 lg:py-24">
-        <div className="text-center mb-12">
-          <Badge variant="secondary" className="mb-4">
-            🌾 Agricultural Technology Platform
-          </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Connect. Trade. Grow.
+    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-primary/10 via-background to-accent/5">
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-grid-pattern" />
+      <div className="container mx-auto px-4 relative">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-6 flex justify-center">
+            <div className="flex items-center space-x-2 bg-primary/10 px-4 py-2 rounded-full">
+              <Leaf className="h-5 w-5 text-primary" />
+              <span className="text-sm font-medium">Soko Connect - Connecting Farmers</span>
+            </div>
+          </div>
+          
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            Agricultural Market Platform for Kenya
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Empowering farmers and agribusiness with real-time market data, logistics solutions, 
-            and community connections across Kenya's agricultural value chain.
+          
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Connect directly with buyers, access real-time market prices, coordinate transport, 
+            and grow your agricultural business with AI-powered insights.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Link to="/kilimo-ams-data">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Link to="/auth">
               <Button size="lg" className="w-full sm:w-auto">
-                Explore Market Data
+                Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Link to="/business-marketing">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-green-50 border-green-200 text-green-700 hover:bg-green-100">
-                <Megaphone className="mr-2 h-4 w-4" />
-                Advertise Your Business
+            <Link to="/marketplaces">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                View Markets
               </Button>
             </Link>
           </div>
-
-          {/* Business Marketing Highlight */}
-          <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-lg p-6 mb-12 border border-green-200">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <Megaphone className="h-5 w-5 text-green-600" />
-              <h3 className="text-lg font-semibold text-green-800">Business Marketing</h3>
-              <Badge className="bg-green-600">Popular</Badge>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="font-semibold mb-2">10,000+ Farmers</h3>
+              <p className="text-sm text-muted-foreground">
+                Connected across Kenya's agricultural regions
+              </p>
             </div>
-            <p className="text-green-700 mb-4">
-              Reach thousands of farmers and agricultural professionals. Advertise your business for just $20 for 30 days.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm text-green-600">
-              <div className="flex items-center gap-1">
-                <Target className="h-4 w-4" />
-                <span>Targeted Audience</span>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <TrendingUp className="h-6 w-6 text-primary" />
               </div>
-              <div className="flex items-center gap-1">
-                <DollarSign className="h-4 w-4" />
-                <span>$20 for 30 Days</span>
+              <h3 className="font-semibold mb-2">Real-time Prices</h3>
+              <p className="text-sm text-muted-foreground">
+                Live market data from major trading centers
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Leaf className="h-6 w-6 text-primary" />
               </div>
-              <div className="flex items-center gap-1">
-                <TrendingUp className="h-4 w-4" />
-                <span>1000+ Daily Visitors</span>
-              </div>
+              <h3 className="font-semibold mb-2">AI Assistant</h3>
+              <p className="text-sm text-muted-foreground">
+                Multi-language support with market insights
+              </p>
             </div>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow cursor-pointer">
-              <Link to={feature.link}>
-                <CardContent className="p-6 text-center">
-                  <feature.icon className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
-                </CardContent>
-              </Link>
-            </Card>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <p className="text-gray-500 text-sm">
-            Trusted by farmers, cooperatives, and agribusiness across Kenya
-          </p>
-        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

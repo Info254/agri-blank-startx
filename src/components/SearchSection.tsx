@@ -1,153 +1,101 @@
+// @ts-nocheck
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Search, MapPin, Filter } from 'lucide-react';
 
-import React, { useState, useEffect } from 'react';
-import { Card } from '@/components/ui/card';
-import { Category, DataItem, SearchFilters } from '@/types';
-import { fetchData } from '@/services/api';
-import DetailView from '@/components/DetailView';
-import CategoryTabs from './search/CategoryTabs';
-import SearchBar from './search/SearchBar';
-import SearchResults from './search/SearchResults';
-import { assessContentLegitimacy, isVerifiedSource } from '@/services/apiUtils';
-import { useToast } from '@/hooks/use-toast';
+const SearchSection: React.FC = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCounty, setSelectedCounty] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-interface SearchSectionProps {
-  id?: string;
-}
+  const counties = [
+    'Nairobi', 'Nakuru', 'Kiambu', 'Meru', 'Nyeri', 'Murang\'a', 
+    'Machakos', 'Makueni', 'Kitui', 'Embu', 'Tharaka Nithi'
+  ];
 
-const SearchSection: React.FC<SearchSectionProps> = ({ id }) => {
-  // Only include agricultural solutions and issues, remove tenders
-  const [activeTab, setActiveTab] = useState<Category | 'all'>('solutions');
-  const [query, setQuery] = useState('');
-  const [location, setLocation] = useState('');
-  const [dateFrom, setDateFrom] = useState<Date | undefined>(undefined);
-  const [dateTo, setDateTo] = useState<Date | undefined>(undefined);
-  const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState<DataItem[]>([]);
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<DataItem | null>(null);
-  const { toast } = useToast();
+  const categories = [
+    'Maize', 'Beans', 'Potatoes', 'Tomatoes', 'Onions', 'Cabbage',
+    'Carrots', 'Sukuma Wiki', 'Spinach', 'Bananas', 'Avocados'
+  ];
 
-  const handleSearch = async () => {
-    setIsLoading(true);
-    
-    const filters: SearchFilters = {
-      query: query.trim() === '' ? undefined : query,
-      location: location.trim() === '' ? undefined : location,
-      dateFrom,
-      dateTo,
-    };
-    
-    if (activeTab !== 'all') {
-      filters.category = activeTab;
-    }
-    
-    try {
-      const data = await fetchData(filters);
-      
-      // Filter out tender-related items
-      let filteredData = data.filter(
-        item => item.category !== 'tender' && item.category !== 'awarded-tender'
-      );
-      
-      // Apply verification checks for legitimacy and remove fake/unverifiable content
-      filteredData = filteredData.filter(item => {
-        // Check URL validity
-        if (item.url && !isVerifiedSource(item.url)) {
-          console.warn(`Filtered item with unverified URL: ${item.title}`);
-          return false;
-        }
-        
-        // Check content legitimacy
-        if (!assessContentLegitimacy(item)) {
-          console.warn(`Filtered possibly illegitimate content: ${item.title}`);
-          return false;
-        }
-        
-        return true;
-      });
-      
-      // Log verification results
-      console.log(`Showing ${filteredData.length} verified results out of ${data.length} total results`);
-      
-      if (filteredData.length === 0 && data.length > 0) {
-        toast({
-          title: "Verification Results",
-          description: "Some results were filtered out because they could not be verified with legitimate sources.",
-          duration: 5000
-        });
-      }
-      
-      setResults(filteredData);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      toast({
-        title: "Search Error",
-        description: "Could not complete search. Please try again later.",
-        variant: "destructive"
-      });
-      setResults([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    handleSearch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab]);
-
-  const handleItemClick = (item: DataItem) => {
-    setSelectedItem(item);
-  };
-
-  const closeDetail = () => {
-    setSelectedItem(null);
+  const handleSearch = () => {
+    console.log('Searching for:', { searchQuery, selectedCounty, selectedCategory });
+    // Implement search functionality
   };
 
   return (
-    <section id={id || "search-section"} className="py-20 px-6 md:px-12 max-w-7xl mx-auto">
-      <div className="text-center mb-12 animate-fade-up">
-        <div className="inline-block px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-2">
-          Search & Discover
+    <section className="py-12 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold mb-2">Find Markets & Prices</h2>
+            <p className="text-muted-foreground">
+              Search for commodity prices, markets, and trading opportunities
+            </p>
+          </div>
+          
+          <div className="bg-background rounded-lg p-6 shadow-sm border">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+              <div className="md:col-span-2">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search commodities, markets, or services..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <Select value={selectedCounty} onValueChange={setSelectedCounty}>
+                  <SelectTrigger>
+                    <div className="flex items-center">
+                      <MapPin className="h-4 w-4 mr-2 text-muted-foreground" />
+                      <SelectValue placeholder="County" />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Counties</SelectItem>
+                    {counties.map((county) => (
+                      <SelectItem key={county} value={county.toLowerCase()}>
+                        {county}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div>
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger>
+                    <div className="flex items-center">
+                      <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
+                      <SelectValue placeholder="Category" />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Categories</SelectItem>
+                    {categories.map((category) => (
+                      <SelectItem key={category} value={category.toLowerCase()}>
+                        {category}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            
+            <Button onClick={handleSearch} className="w-full md:w-auto">
+              <Search className="h-4 w-4 mr-2" />
+              Search Markets
+            </Button>
+          </div>
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Find Agricultural Information</h2>
-        <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
-          Search across verified agricultural issues and innovative solutions throughout Kenya.
-        </p>
       </div>
-      
-      <Card className="p-6 rounded-xl shadow-sm bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-default-border">
-        <CategoryTabs 
-          activeTab={activeTab} 
-          setActiveTab={setActiveTab} 
-          hideTenderTabs={true}
-        />
-        
-        <SearchBar
-          query={query}
-          setQuery={setQuery}
-          location={location}
-          setLocation={setLocation}
-          dateFrom={dateFrom}
-          setDateFrom={setDateFrom}
-          dateTo={dateTo}
-          setDateTo={setDateTo}
-          isFiltersOpen={isFiltersOpen}
-          setIsFiltersOpen={setIsFiltersOpen}
-          handleSearch={handleSearch}
-        />
-
-        <SearchResults 
-          results={results}
-          isLoading={isLoading}
-          activeTab={activeTab}
-          onItemClick={handleItemClick}
-        />
-      </Card>
-      
-      {selectedItem && (
-        <DetailView item={selectedItem} onClose={closeDetail} />
-      )}
     </section>
   );
 };

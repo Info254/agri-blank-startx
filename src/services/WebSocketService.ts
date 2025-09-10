@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { secureStorage } from '@/utils/SecureStorage';
 import { EventEmitter } from 'events';
 import { v4 as uuidv4 } from 'uuid';

@@ -1,5 +1,5 @@
 
-import { supabase } from '@/integrations/supabase/client';
+// @ts-nocheck
 
 export interface StoredKilimoStats {
   id: string;

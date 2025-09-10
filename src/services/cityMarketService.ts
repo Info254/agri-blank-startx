@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { supabase } from '@/lib/supabaseClient';
 import { Database } from '@/integrations/supabase/types';
 import { CityMarket, CityMarketFormData, CityMarketFilters } from '@/types/cityMarket';

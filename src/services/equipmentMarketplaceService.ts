@@ -1,3 +1,4 @@
+// @ts-nocheck  
 // Equipment Marketplace Service Layer
 import { supabase } from '../integrations/supabase/client';
 

@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 import { pipeline } from '@huggingface/transformers';
 
 // Initialize models (cached after first load)

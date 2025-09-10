@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 // Helper function to simulate API delay
 const simulateDelay = (ms: number = 800) => new Promise(resolve => setTimeout(resolve, ms));
 

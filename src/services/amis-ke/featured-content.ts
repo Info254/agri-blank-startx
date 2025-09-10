@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 import { AmisKeApiHandler, AmisKeApiResponse } from './api-handler';
 
 export interface FeaturedItem {

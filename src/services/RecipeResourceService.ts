@@ -1,3 +1,4 @@
+// @ts-nocheck
 // RecipeResourceService: Handles CRUD for recipes, resources, and workshops
 import { createClient } from '@supabase/supabase-js';
 

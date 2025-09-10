@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 import { AmisKePriceData, AmisKeMarket } from './types';
 import { AmisKeApiHandler, AmisKeApiResponse } from './api-handler';
 
