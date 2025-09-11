@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Advanced backend logic for admin actions (example: approve/reject suppliers, products, orders)
 import { supabase } from '../integrations/supabase/client';
 

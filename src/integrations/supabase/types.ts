@@ -50,6 +50,39 @@ export type Database = {
         }
         Relationships: []
       }
+      bluetooth_connections: {
+        Row: {
+          connection_type: string
+          created_at: string
+          device_id: string
+          device_name: string | null
+          id: string
+          last_seen: string | null
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          connection_type: string
+          created_at?: string
+          device_id: string
+          device_name?: string | null
+          id?: string
+          last_seen?: string | null
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          connection_type?: string
+          created_at?: string
+          device_id?: string
+          device_name?: string | null
+          id?: string
+          last_seen?: string | null
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       bulk_orders: {
         Row: {
           buyer_id: string
@@ -336,6 +369,51 @@ export type Database = {
         }
         Relationships: []
       }
+      corridor_marketplaces: {
+        Row: {
+          contact_info: string | null
+          county: string
+          created_at: string
+          facilities: Json | null
+          gps_coordinates: string | null
+          id: string
+          is_active: boolean | null
+          location: string
+          market_days: string[] | null
+          name: string
+          specialties: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          contact_info?: string | null
+          county: string
+          created_at?: string
+          facilities?: Json | null
+          gps_coordinates?: string | null
+          id?: string
+          is_active?: boolean | null
+          location: string
+          market_days?: string[] | null
+          name: string
+          specialties?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          contact_info?: string | null
+          county?: string
+          created_at?: string
+          facilities?: Json | null
+          gps_coordinates?: string | null
+          id?: string
+          is_active?: boolean | null
+          location?: string
+          market_days?: string[] | null
+          name?: string
+          specialties?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       delivery_requests: {
         Row: {
           actual_cost: number | null
@@ -415,6 +493,57 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      equipment_marketplace: {
+        Row: {
+          available_for: string[] | null
+          category: string
+          contact_email: string | null
+          contact_phone: string | null
+          county: string | null
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean | null
+          location: string | null
+          name: string
+          owner_id: string
+          price: number | null
+          updated_at: string
+        }
+        Insert: {
+          available_for?: string[] | null
+          category: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          county?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          location?: string | null
+          name: string
+          owner_id: string
+          price?: number | null
+          updated_at?: string
+        }
+        Update: {
+          available_for?: string[] | null
+          category?: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          county?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          location?: string | null
+          name?: string
+          owner_id?: string
+          price?: number | null
+          updated_at?: string
+        }
+        Relationships: []
       }
       farm_budgets: {
         Row: {
@@ -616,6 +745,51 @@ export type Database = {
           title?: string
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      food_rescue_requests: {
+        Row: {
+          county: string
+          created_at: string
+          description: string | null
+          food_type: string
+          id: string
+          location: string
+          pickup_before: string
+          quantity: number
+          requester_id: string
+          status: string | null
+          unit: string
+          updated_at: string
+        }
+        Insert: {
+          county: string
+          created_at?: string
+          description?: string | null
+          food_type: string
+          id?: string
+          location: string
+          pickup_before: string
+          quantity: number
+          requester_id: string
+          status?: string | null
+          unit: string
+          updated_at?: string
+        }
+        Update: {
+          county?: string
+          created_at?: string
+          description?: string | null
+          food_type?: string
+          id?: string
+          location?: string
+          pickup_before?: string
+          quantity?: number
+          requester_id?: string
+          status?: string | null
+          unit?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -945,6 +1119,42 @@ export type Database = {
           },
         ]
       }
+      price_alerts: {
+        Row: {
+          alert_type: string | null
+          commodity: string
+          county: string | null
+          created_at: string
+          id: string
+          is_active: boolean | null
+          target_price: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          alert_type?: string | null
+          commodity: string
+          county?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          target_price: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          alert_type?: string | null
+          commodity?: string
+          county?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          target_price?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -999,6 +1209,164 @@ export type Database = {
           specialization?: string[] | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      subscription_box_deliveries: {
+        Row: {
+          box_id: string
+          consumer_id: string
+          created_at: string
+          delivery_address: string | null
+          delivery_date: string
+          id: string
+          status: string | null
+          tracking_number: string | null
+          updated_at: string
+        }
+        Insert: {
+          box_id: string
+          consumer_id: string
+          created_at?: string
+          delivery_address?: string | null
+          delivery_date: string
+          id?: string
+          status?: string | null
+          tracking_number?: string | null
+          updated_at?: string
+        }
+        Update: {
+          box_id?: string
+          consumer_id?: string
+          created_at?: string
+          delivery_address?: string | null
+          delivery_date?: string
+          id?: string
+          status?: string | null
+          tracking_number?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscription_box_deliveries_box_id_fkey"
+            columns: ["box_id"]
+            isOneToOne: false
+            referencedRelation: "subscription_boxes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subscription_boxes: {
+        Row: {
+          available_slots: number | null
+          contents: Json | null
+          created_at: string
+          delivery_frequency: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          price: number
+          producer_id: string
+          updated_at: string
+        }
+        Insert: {
+          available_slots?: number | null
+          contents?: Json | null
+          created_at?: string
+          delivery_frequency?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          price: number
+          producer_id: string
+          updated_at?: string
+        }
+        Update: {
+          available_slots?: number | null
+          contents?: Json | null
+          created_at?: string
+          delivery_frequency?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          price?: number
+          producer_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      translation_cache: {
+        Row: {
+          created_at: string
+          id: string
+          source_language: string
+          source_text: string
+          target_language: string
+          translated_text: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          source_language?: string
+          source_text: string
+          target_language: string
+          translated_text: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          source_language?: string
+          source_text?: string
+          target_language?: string
+          translated_text?: string
+        }
+        Relationships: []
+      }
+      transport_coordination: {
+        Row: {
+          coordinator_id: string
+          cost_per_kg: number | null
+          created_at: string
+          current_bookings: number | null
+          delivery_location: string
+          id: string
+          max_capacity: number
+          pickup_location: string
+          route_name: string
+          scheduled_date: string
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          coordinator_id: string
+          cost_per_kg?: number | null
+          created_at?: string
+          current_bookings?: number | null
+          delivery_location: string
+          id?: string
+          max_capacity: number
+          pickup_location: string
+          route_name: string
+          scheduled_date: string
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          coordinator_id?: string
+          cost_per_kg?: number | null
+          created_at?: string
+          current_bookings?: number | null
+          delivery_location?: string
+          id?: string
+          max_capacity?: number
+          pickup_location?: string
+          route_name?: string
+          scheduled_date?: string
+          status?: string | null
+          updated_at?: string
         }
         Relationships: []
       }

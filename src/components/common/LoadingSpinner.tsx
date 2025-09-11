@@ -2,7 +2,7 @@
 import React from 'react';
 import { Loader2 } from 'lucide-react';
 
-const LoadingSpinner = ({ size = 'md', text, className }) => {
+const LoadingSpinner = ({ size = 'md', text, className }: any) => {
   const sizeClasses = {
     sm: 'h-4 w-4',
     md: 'h-6 w-6', 
