@@ -545,6 +545,114 @@ export type Database = {
         }
         Relationships: []
       }
+      exporter_profiles: {
+        Row: {
+          business_license_number: string | null
+          certifications: string[] | null
+          commodities_handled: string[]
+          company_description: string | null
+          company_name: string
+          company_registration_number: string | null
+          contact_email: string
+          contact_person_name: string
+          contact_phone: string
+          created_at: string
+          documentation_services: boolean
+          export_license_number: string | null
+          export_markets: string[]
+          financing_services: boolean
+          id: string
+          is_active: boolean
+          is_verified: boolean
+          logistics_services: boolean
+          maximum_quantity_tons: number | null
+          minimum_quantity_tons: number | null
+          office_coordinates: Json | null
+          office_county: string
+          office_location: string
+          quality_assurance_services: boolean
+          rating: number
+          services_offered: string[]
+          successful_exports: number
+          total_collaborations: number
+          updated_at: string
+          user_id: string
+          verification_documents: string[] | null
+          website_url: string | null
+          years_in_business: number | null
+        }
+        Insert: {
+          business_license_number?: string | null
+          certifications?: string[] | null
+          commodities_handled?: string[]
+          company_description?: string | null
+          company_name: string
+          company_registration_number?: string | null
+          contact_email: string
+          contact_person_name: string
+          contact_phone: string
+          created_at?: string
+          documentation_services?: boolean
+          export_license_number?: string | null
+          export_markets?: string[]
+          financing_services?: boolean
+          id?: string
+          is_active?: boolean
+          is_verified?: boolean
+          logistics_services?: boolean
+          maximum_quantity_tons?: number | null
+          minimum_quantity_tons?: number | null
+          office_coordinates?: Json | null
+          office_county: string
+          office_location: string
+          quality_assurance_services?: boolean
+          rating?: number
+          services_offered?: string[]
+          successful_exports?: number
+          total_collaborations?: number
+          updated_at?: string
+          user_id: string
+          verification_documents?: string[] | null
+          website_url?: string | null
+          years_in_business?: number | null
+        }
+        Update: {
+          business_license_number?: string | null
+          certifications?: string[] | null
+          commodities_handled?: string[]
+          company_description?: string | null
+          company_name?: string
+          company_registration_number?: string | null
+          contact_email?: string
+          contact_person_name?: string
+          contact_phone?: string
+          created_at?: string
+          documentation_services?: boolean
+          export_license_number?: string | null
+          export_markets?: string[]
+          financing_services?: boolean
+          id?: string
+          is_active?: boolean
+          is_verified?: boolean
+          logistics_services?: boolean
+          maximum_quantity_tons?: number | null
+          minimum_quantity_tons?: number | null
+          office_coordinates?: Json | null
+          office_county?: string
+          office_location?: string
+          quality_assurance_services?: boolean
+          rating?: number
+          services_offered?: string[]
+          successful_exports?: number
+          total_collaborations?: number
+          updated_at?: string
+          user_id?: string
+          verification_documents?: string[] | null
+          website_url?: string | null
+          years_in_business?: number | null
+        }
+        Relationships: []
+      }
       farm_budgets: {
         Row: {
           actual_amount: number | null
@@ -745,6 +853,111 @@ export type Database = {
           title?: string
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      farmer_exporter_collaborations: {
+        Row: {
+          availability_period: string | null
+          collaboration_status: string
+          collaboration_type: string
+          commodity_name: string
+          commodity_variety: string | null
+          created_at: string
+          documentation_needs: string[] | null
+          estimated_quantity: number
+          expires_at: string | null
+          exporter_id: string | null
+          farm_size_acres: number | null
+          farmer_certifications: string[] | null
+          farmer_coordinates: Json | null
+          farmer_county: string
+          farmer_email: string | null
+          farmer_experience_years: number | null
+          farmer_id: string
+          farmer_location: string
+          farmer_name: string
+          farmer_phone: string
+          farmer_profile_description: string | null
+          harvest_date: string | null
+          has_export_documentation: boolean
+          id: string
+          is_active: boolean
+          notes: string | null
+          pricing_expectations: string | null
+          quality_grade: string | null
+          special_requirements: string[] | null
+          target_markets: string[] | null
+          unit: string
+          updated_at: string
+        }
+        Insert: {
+          availability_period?: string | null
+          collaboration_status?: string
+          collaboration_type: string
+          commodity_name: string
+          commodity_variety?: string | null
+          created_at?: string
+          documentation_needs?: string[] | null
+          estimated_quantity: number
+          expires_at?: string | null
+          exporter_id?: string | null
+          farm_size_acres?: number | null
+          farmer_certifications?: string[] | null
+          farmer_coordinates?: Json | null
+          farmer_county: string
+          farmer_email?: string | null
+          farmer_experience_years?: number | null
+          farmer_id: string
+          farmer_location: string
+          farmer_name: string
+          farmer_phone: string
+          farmer_profile_description?: string | null
+          harvest_date?: string | null
+          has_export_documentation?: boolean
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          pricing_expectations?: string | null
+          quality_grade?: string | null
+          special_requirements?: string[] | null
+          target_markets?: string[] | null
+          unit: string
+          updated_at?: string
+        }
+        Update: {
+          availability_period?: string | null
+          collaboration_status?: string
+          collaboration_type?: string
+          commodity_name?: string
+          commodity_variety?: string | null
+          created_at?: string
+          documentation_needs?: string[] | null
+          estimated_quantity?: number
+          expires_at?: string | null
+          exporter_id?: string | null
+          farm_size_acres?: number | null
+          farmer_certifications?: string[] | null
+          farmer_coordinates?: Json | null
+          farmer_county?: string
+          farmer_email?: string | null
+          farmer_experience_years?: number | null
+          farmer_id?: string
+          farmer_location?: string
+          farmer_name?: string
+          farmer_phone?: string
+          farmer_profile_description?: string | null
+          harvest_date?: string | null
+          has_export_documentation?: boolean
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          pricing_expectations?: string | null
+          quality_grade?: string | null
+          special_requirements?: string[] | null
+          target_markets?: string[] | null
+          unit?: string
+          updated_at?: string
         }
         Relationships: []
       }

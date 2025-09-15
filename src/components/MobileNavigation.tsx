@@ -22,6 +22,11 @@ const navigationItems = [
     icon: Home
   },
   {
+    href: '/farm',
+    label: 'Farm',
+    icon: Tractor
+  },
+  {
     href: '/marketplace',
     label: 'Market',
     icon: ShoppingCart
@@ -35,11 +40,6 @@ const navigationItems = [
     href: '/transport',
     label: 'Transport',
     icon: Truck
-  },
-  {
-    href: '/profile',
-    label: 'Profile',
-    icon: User
   }
 ];
 
