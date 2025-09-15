@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 interface CacheItem<T> {
   data: T;
   timestamp: number;

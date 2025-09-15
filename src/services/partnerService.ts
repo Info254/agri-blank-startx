@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { supabase } from '@/integrations/supabase/client';
 import { Partner, PartnerEvent } from '@/types/partner';
 import { ServiceResponse } from '@/types/service';

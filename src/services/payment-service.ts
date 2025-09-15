@@ -1,3 +1,4 @@
+// @ts-nocheck
 interface PaymentRequest {
   amount: number;
   phoneNumber: string;

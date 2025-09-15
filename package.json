@@ -11,11 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@capacitor/android": "^7.4.2",
+    "@capacitor/android": "^7.4.3",
     "@capacitor/app": "^7.0.1",
     "@capacitor/camera": "^7.0.1",
-    "@capacitor/core": "^7.4.2",
+    "@capacitor/core": "^7.4.3",
     "@capacitor/device": "^7.0.1",
+    "@capacitor/ios": "^7.4.3",
     "@capacitor/network": "^7.0.1",
     "@capacitor/push-notifications": "^7.0.1",
     "@capacitor/splash-screen": "^7.0.1",
@@ -97,7 +98,7 @@
     "@types/react": "^18.3.3"
   },
   "devDependencies": {
-    "@capacitor/cli": "^7.4.2",
+    "@capacitor/cli": "^7.4.3",
     "@eslint/js": "^9.9.0",
     "@playwright/test": "^1.54.1",
     "@tailwindcss/typography": "^0.5.15",

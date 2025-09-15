@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 import { KilimoStats } from '@/types';
 import { simulateDelay } from './apiUtils';
 

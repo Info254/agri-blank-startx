@@ -38,8 +38,7 @@ export class ImageOptimizationService {
       quality = 0.8,
       maxWidth = 1920,
       maxHeight = 1080,
-      format = 'webp',
-      progressive = true
+      format = 'webp'
     } = options;
 
     try {

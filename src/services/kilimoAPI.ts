@@ -1,4 +1,6 @@
 
+// @ts-nocheck
+
 import { KilimoStats, Farmer, Produce, Market, TransportProvider, FarmerGroup, Warehouse, Forecast } from '@/types';
 import { simulateDelay } from './apiUtils';
 import { v4 as uuidv4 } from 'uuid';

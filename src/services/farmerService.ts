@@ -4,11 +4,11 @@ import { supabase } from '@/integrations/supabase/client';
 export interface FarmTask {
   id: string;
   title: string;
-  crop: string;
-  date: string;
+  crop: string | null;
+  date: string | null;
   priority: 'High' | 'Medium' | 'Low';
   status: 'pending' | 'completed';
-  description: string;
+  description: string | null;
   user_id: string;
 }
 
